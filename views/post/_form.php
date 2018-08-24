@@ -4,15 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\InputPost */
+/* @var $model app\models\Post */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="input-post-form">
+<div class="post-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'number')->textInput() ?>
 
     <?= $form->field($model, 'receipt_date')->textInput() ?>
 

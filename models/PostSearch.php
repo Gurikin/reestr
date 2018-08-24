@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\InputPost;
+use app\models\Post;
 
 /**
- * PostSearch represents the model behind the search form of `app\models\InputPost`.
+ * PostSearch represents the model behind the search form of `app\models\Post`.
  */
-class PostSearch extends InputPost
+class PostSearch extends Post
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class PostSearch extends InputPost
     public function rules()
     {
         return [
-            [['id', 'number'], 'integer'],
+            [['id'], 'integer'],
             [['receipt_date', 'theme', 'content', 'bind_files'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ class PostSearch extends InputPost
      */
     public function search($params)
     {
-        $query = InputPost::find();
+        $query = Post::find();
 
         // add conditions that should always apply here
 
@@ -60,7 +60,6 @@ class PostSearch extends InputPost
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'number' => $this->number,
             'receipt_date' => $this->receipt_date,
         ]);
 

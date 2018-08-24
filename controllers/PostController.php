@@ -3,14 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\InputPost;
+use app\models\Post;
 use app\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PostController implements the CRUD actions for InputPost model.
+ * PostController implements the CRUD actions for Post model.
  */
 class PostController extends Controller
 {
@@ -30,7 +30,7 @@ class PostController extends Controller
     }
 
     /**
-     * Lists all InputPost models.
+     * Lists all Post models.
      * @return mixed
      */
     public function actionIndex()
@@ -45,7 +45,7 @@ class PostController extends Controller
     }
 
     /**
-     * Displays a single InputPost model.
+     * Displays a single Post model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class PostController extends Controller
     }
 
     /**
-     * Creates a new InputPost model.
+     * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new InputPost();
+        $model = new Post();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class PostController extends Controller
     }
 
     /**
-     * Updates an existing InputPost model.
+     * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class PostController extends Controller
     }
 
     /**
-     * Deletes an existing InputPost model.
+     * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class PostController extends Controller
     }
 
     /**
-     * Finds the InputPost model based on its primary key value.
+     * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return InputPost the loaded model
+     * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = InputPost::findOne($id)) !== null) {
+        if (($model = Post::findOne($id)) !== null) {
             return $model;
         }
 

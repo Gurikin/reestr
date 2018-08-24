@@ -5,25 +5,25 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "input_post".
+ * This is the model class for table "post".
  *
  * @property int $id
- * @property int $number
  * @property string $receipt_date
  * @property string $theme
  * @property string $content
  * @property string $bind_files
  *
- * @property PostBind[] $postBinds
+ * @property Numbr[] $numbrs
+ * @property PostFolder[] $postFolders
  */
-class InputPost extends \yii\db\ActiveRecord
+class Post extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'input_post';
+        return 'post';
     }
 
     /**
@@ -32,7 +32,6 @@ class InputPost extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number'], 'integer'],
             [['receipt_date'], 'safe'],
             [['content', 'bind_files'], 'string'],
             [['theme'], 'string', 'max' => 255],
@@ -46,7 +45,6 @@ class InputPost extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'number' => 'Number',
             'receipt_date' => 'Receipt Date',
             'theme' => 'Theme',
             'content' => 'Content',
@@ -57,8 +55,16 @@ class InputPost extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPostBinds()
+    public function getNumbrs()
     {
-        return $this->hasMany(PostBind::className(), ['input_id' => 'id']);
+        return $this->hasMany(Numbr::className(), ['post_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostFolders()
+    {
+        return $this->hasMany(PostFolder::className(), ['post_id' => 'id']);
     }
 }
