@@ -22,7 +22,7 @@ class Number extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'numbr';
+        return 'number';
     }
 
     /**
@@ -31,8 +31,8 @@ class Number extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['numbr', 'year', 'in_out', 'post_id'], 'required'],
-            [['numbr', 'year', 'in_out', 'post_id'], 'integer'],
+            [['number', 'year', 'in_out', 'post_id'], 'required'],
+            [['number', 'year', 'in_out', 'post_id'], 'integer'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::className(), 'targetAttribute' => ['post_id' => 'id']],
         ];
     }
@@ -44,7 +44,7 @@ class Number extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'numbr' => 'Numbr',
+            'number' => 'Number',
             'year' => 'Year',
             'in_out' => 'In Out',
             'post_id' => 'Post ID',

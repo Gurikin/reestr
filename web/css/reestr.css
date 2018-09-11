@@ -1,0 +1,84 @@
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.input-reestr-index {
+    margin: 0 auto;
+}
+
+table.reestr {
+    width: 100%;
+    border: 1px solid #220606f6;
+    border-spacing: 0px;
+    /*background-color: rgb(98, 170, 228);*/
+    background-color: #d5e5f8af;
+}
+
+table.reestr .filters td {
+    padding: 0 5px 0 5px;
+}
+
+table.reestr .form-control {
+    background-color: #d5e5f8af;
+    border: #d5e5f8af 0px solid;
+    width: 100%;
+    border-radius: 0px;
+}
+
+th {
+    font-size: 18px;
+}
+
+th, td {
+    text-align: center;
+    border: 1px solid #220606f6;
+    height: 50px;
+    padding: 2px;
+}
+
+td.number, td.year {
+    width: 6%;
+}
+
+td.date-col {
+    width: 12%;
+}
+
+td.content-col {
+    width: 30%;
+}
+
+th.files-col, td.files-col {
+    width: 8%;
+}
+
+th.in-out, td.in-out {
+    width: 15%;
+}
+
+th.action-col {
+    color: #337ab7;
+}
+
+td.action-col {
+    width: 10%;
+}
+
+tr:hover {
+    background-color: rgb(146, 196, 236);
+}
+
+th:hover, th:hover>a, td:hover {
+    background-color: rgb(98, 170, 228);
+    color: #ffffff;
+}
+
+th:hover {
+    cursor: default;
+}
+
+th:hover>a {
+    cursor: pointer;
+}

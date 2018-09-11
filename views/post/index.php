@@ -25,11 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'receipt_date',
-            'theme',
-            'content:ntext',
-            'bind_files:ntext',
+            'id',//'Номер письма',
+            'receipt_date',//'Дата получения/отправки',
+            'theme',//'Тема письма',
+            'content:ntext',//'Содержание письма:ntext',
+            'bind_files:ntext',//'Связанные файлы:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

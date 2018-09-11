@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "post".
  *
@@ -44,20 +45,20 @@ class Post extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'receipt_date' => 'Receipt Date',
-            'theme' => 'Theme',
-            'content' => 'Content',
-            'bind_files' => 'Bind Files',
+            'id' => 'Номер письма',
+            'receipt_date' => 'Дата получения/отправки',
+            'theme' => 'Тема письма',
+            'content' => 'Содержание письма',
+            'bind_files' => 'Связанные файлы',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNumbrs()
+    public function getNumbers()
     {
-        return $this->hasMany(Numbr::className(), ['post_id' => 'id']);
+        return $this->hasMany(Number::className(), ['post_id' => 'id']);
     }
 
     /**
