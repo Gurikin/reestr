@@ -45,16 +45,11 @@ $config = [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => false,
             'showScriptName' => false,
 //            'suffix' => '.html',
             'rules' => [
-                [
-                    'pattern' => '',
-                    'route' => 'site/index',
-                    'suffix' => ''
-                ],
-                '<action:(index|about|contact|login)>' => 'site/<action>',
-//                '<controller>/<action>' => '<controller>/<action>',
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'rest/post-reestr'],
             ],
         ],
         'db' => $db,

@@ -2,14 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Utils;
 use Yii;
-use app\models\InputReestr;
-use app\models\InputReestrSearch;
+use app\models\PostReestr;
+use app\models\PostReestrSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class InputReestrController extends \yii\web\Controller
+class PostReestrController extends \yii\web\Controller
 {
     /**
      * {@inheritdoc}
@@ -32,7 +33,7 @@ class InputReestrController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $searchModel = new InputReestrSearch();
+        $searchModel = new PostReestrSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -60,17 +61,23 @@ class InputReestrController extends \yii\web\Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * TODO create the checkUpdate method (in the InputReestr class) that will be compare the POST fields to the model fields
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = PostReestr::reestrUpdate($id);
+        if ($model !== null) {
+            if ($model !== false) {
+                return $this->render('view', [
+                    'model' => $this->findModel($id),
+                ]);
+            } else {
+                Utils::debug("Error on update DB.");
+            }
         }
-
+        $model = $this->findModel($id);
         return $this->render('update', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 
@@ -78,12 +85,12 @@ class InputReestrController extends \yii\web\Controller
      * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return InputReestr the loaded model
+     * @return PostReestr the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = InputReestr::findOne($id)) !== null) {
+        if (($model = PostReestr::findOne($id)) !== null) {
             return $model;
         }
 

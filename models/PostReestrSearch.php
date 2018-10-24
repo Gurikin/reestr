@@ -11,10 +11,10 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\InputReestr;
+use app\models\PostReestr;
 
 
-class InputReestrSearch extends InputReestr
+class PostReestrSearch extends PostReestr
 {
 
     /**
@@ -47,7 +47,7 @@ class InputReestrSearch extends InputReestr
      */
     public function search($params)
     {
-        $query = InputReestr::find();
+        $query = PostReestr::find();
 
         // add conditions that should always apply here
 

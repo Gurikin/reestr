@@ -41,7 +41,7 @@ $this->beginPage() ?>
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Gii', 'url' => '/gii'],
-            ['label' => 'Реестр писем', 'url' => '/input-reestr'],
+            ['label' => 'Реестр писем', 'url' => '/post-reestr'],
             ['label' => 'Реестр изменений в документации', 'url' => ['/about']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/login']]

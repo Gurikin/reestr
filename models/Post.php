@@ -58,7 +58,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getNumbers()
     {
-        return $this->hasMany(Number::className(), ['post_id' => 'id']);
+        return $this->hasOne(Number::className(), ['post_id' => 'id']);
     }
 
     /**

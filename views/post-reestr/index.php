@@ -4,13 +4,13 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\InputReestrSearch */
+/* @var $searchModel app\models\PostReestrSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Reestr of inputs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="input-reestr-index">
+<div class="post-reestr-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'tableOptions' => ['class' => 'reestr'],
         //'rowOptions'=>['style' => array('vertical-align'=>'middle')],
         'columns' => [
+
             [
                 'attribute' => 'number',
                 'label' => 'N°',

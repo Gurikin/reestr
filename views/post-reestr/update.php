@@ -4,10 +4,7 @@ use yii\helpers\Html;
 use app\models\Post;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\InputReestr */
-
-
-\app\models\Utils::debug($model->getNumber($model->post_reestr_id));
+/* @var $model app\models\PostReestr */
 
 $this->title = 'Изменить письмо номер: ' . $model->number;
 
