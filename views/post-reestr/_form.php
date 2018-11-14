@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin([
         'method' => 'PUT',
-        'action' => ['rest/post-reestr/update?id='.$model->post_reestr_id],
+        'action' => ['rest/post-reestr/reestr-update?id='.$model->post_reestr_id],
     ]); ?>
 
     <?= $form->field($model, 'number')->textInput() ?>

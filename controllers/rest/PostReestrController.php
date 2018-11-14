@@ -1,8 +1,10 @@
 <?php
 namespace app\controllers\rest;
 
+use app\models\Utils;
 use yii;
 use yii\rest\ActiveController;
+use yii\rest\Controller;
 use app\models\PostReestr;
 use yii\web\Response;
 
@@ -13,41 +15,41 @@ class PostReestrController extends ActiveController
     /**
      * @return array
      */
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        $behaviors['verbs'] = [
-            'class' => \yii\filters\VerbFilter::className(),
-            'actions' => [
-                'index'  => ['get'],
-                'view'   => ['get'],
-                'create' => ['post'],
-                'update' => ['post'],
-                'delete' => ['delete'],
-            ]
-        ];
-        return $behaviors;
-    }
-
-    public function beforeAction($event)
-    {
-        $action = $event->id;
-        if (isset($this->actions[$action])) {
-            $verbs = $this->actions[$action];
-        } elseif (isset($this->actions['*'])) {
-            $verbs = $this->actions['*'];
-        } else {
-            return $event->isValid;
-        }
-        $verb = Yii::$app->getRequest()->getMethod();
-        $allowed = array_map('strtoupper', $verbs);
-        if (!in_array($verb, $allowed)) {
-            $this->getHeader(400);
-            echo json_encode(['status' => 0, 'error_code' => 400, 'message' => 'Method not allowed'], JSON_PRETTY_PRINT);
-            exit;
-        }
-        return true;
-    }
+//    public function behaviors()
+//    {
+//        $behaviors = parent::behaviors();
+//        $behaviors['verbs'] = [
+//            'class' => \yii\filters\VerbFilter::className(),
+//            'actions' => [
+//                'index'  => ['get'],
+//                'view'   => ['get'],
+//                'create' => ['post'],
+//                'update' => ['post'],
+//                'delete' => ['delete'],
+//            ]
+//        ];
+//        return $behaviors;
+//    }
+//
+//    public function beforeAction($event)
+//    {
+//        $action = $event->id;
+//        if (isset($this->actions[$action])) {
+//            $verbs = $this->actions[$action];
+//        } elseif (isset($this->actions['*'])) {
+//            $verbs = $this->actions['*'];
+//        } else {
+//            return $event->isValid;
+//        }
+//        $verb = Yii::$app->getRequest()->getMethod();
+//        $allowed = array_map('strtoupper', $verbs);
+//        if (!in_array($verb, $allowed)) {
+//            $this->getHeader(400);
+//            echo json_encode(['status' => 0, 'error_code' => 400, 'message' => 'Method not allowed'], JSON_PRETTY_PRINT);
+//            exit;
+//        }
+//        return true;
+//    }
 
     /**
      * Return a single post_reestr model.
@@ -56,7 +58,9 @@ class PostReestrController extends ActiveController
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
-        return json_encode($this->findModel($id),JSON_PRETTY_PRINT);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
+        return json_encode($this->findModel($id), JSON_PRETTY_PRINT);
+        //return $this->findModel($id);
     }
 
     /**
@@ -69,9 +73,11 @@ class PostReestrController extends ActiveController
      */
     public function actionReestrUpdate($id)
     {
+//        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $model = $this->findModel($id);
         $postModel = $model->getPost($id);
         $numberModel = $model->getNumber($model->post_reestr_id);
+        Utils::debug(Yii::$app->request->bodyParams);
         if ($model->load($post = Yii::$app->request->post())) {
             $numberModel->number = $post['PostReestr']['number'];
             $numberModel->year = $post['PostReestr']['year'];
@@ -80,25 +86,11 @@ class PostReestrController extends ActiveController
             $postModel->receipt_date = $post['PostReestr']['receipt_date'];
             $postModel->content = $post['PostReestr']['content'];
             if ($numberModel->save() == false || $postModel->save() == false) {
-                //return json_encode("Error on update DB.",JSON_PRETTY_PRINT);
-                return "All bad";
+                return "Error on update DB";
             }
-            //return json_encode($this->findModel($id),JSON_PRETTY_PRINT);
-            return "All right";
+            return $this->findModel($id);
         }
-        //return json_encode($this->findModel($id),JSON_PRETTY_PRINT);
-        return "wrong method";
-//        $model = PostReestr::reestrUpdate($id);
-//        if ($model !== null) {
-//            if ($model !== false) {
-//                \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-//                return json_encode($this->findModel($id),JSON_PRETTY_PRINT);
-//            } else {
-//                return json_encode("Error on update DB.",JSON_PRETTY_PRINT);
-//            }
-//        }
-//        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-//        return json_encode($this->findModel($id),JSON_PRETTY_PRINT);
+        return $this->findModel($id);
     }
 
     /**
