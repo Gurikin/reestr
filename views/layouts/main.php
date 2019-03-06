@@ -42,9 +42,9 @@ $this->beginPage() ?>
         'items' => [
             ['label' => 'Gii', 'url' => '/gii'],
             ['label' => 'Реестр писем', 'url' => '/post-reestr'],
-            ['label' => 'Реестр изменений в документации', 'url' => ['/about']],
+            ['label' => 'Реестр изменений в документации', 'url' => ['/site/about']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/login']]
+                ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
